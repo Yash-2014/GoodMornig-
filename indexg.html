@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Morning Wishes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            text-align: center;
+            padding: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 420px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.6);
+            animation: popIn 0.7s ease-out forwards;
+        }
+        .hidden { display: none; }
+        h1, h2 {
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+            font-weight: 700;
+        }
+        h1 { font-size: 2em; color: #d63031; }
+        .glowing-text { animation: fadeInDown 1s ease-out, glow 2s ease-in-out infinite; }
+        h2 { font-size: 1.6em; color: #0984e3; }
+        #greetingImage {
+            width: 100%; height: auto; border-radius: 15px;
+            margin-bottom: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        #gifSelector, #nameInput {
+            width: 100%; padding: 14px; border: 1px solid #ddd;
+            border-radius: 12px; font-size: 1.1em; font-family: 'Poppins', sans-serif;
+        }
+        #gifSelector { margin-top: 10px; cursor: pointer; }
+        #nameInput { margin-bottom: 15px; }
+
+        .whatsapp-button {
+            background-color: #25D366; color: white; padding: 15px 22px;
+            border: none; border-radius: 12px; cursor: pointer;
+            font-size: 1.2em; font-weight: 600; width: 100%;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .whatsapp-button:hover {
+            background-color: #128C7E; transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .whatsapp-button svg { width: 24px; height: 24px; fill: white; }
+        
+        #backButton {
+            background-color: transparent; color: #2d3436; border: 2px solid #2d3436;
+            font-size: 0.9em; padding: 8px 15px; border-radius: 8px;
+            cursor: pointer; margin-bottom: 20px; transition: background-color 0.3s, color 0.3s;
+        }
+        #backButton:hover { background-color: #2d3436; color: white; }
+        #generatedLinkArea { margin-top: 20px; word-wrap: break-word; }
+        #generatedLinkInput {
+            width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ddd;
+            border-radius: 8px; background-color: #f1f2f6; text-align: center; font-size: 0.9em;
+        }
+        #fireworks-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+        /* Ad Container Style */
+        #ad-container {
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-25px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff7675, 0 0 20px #ff7675; }
+            50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fd79a8, 0 0 40px #fd79a8; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="fireworks-container"></div>
+    <div class="container">
+
+        <div id="selectionArea">
+            <h2>Create a Good Morning Wish!</h2>
+            <select id="gifSelector" onchange="showGreeting()">
+                <option value="">-- Step 1: Choose a GIF --</option>
+                <option value="goodmorning1.gif">Good Morning Design 1</option>
+                <option value="goodmorning2.gif">Good Morning Design 2</option>
+                <option value="goodmorning3.gif">Good Morning Design 3</option>
+                <option value="goodmorning4.gif">Good Morning Design 4</option>
+                <option value="goodmorning5.gif">Good Morning Design 5</option>
+                <option value="goodmorning6.gif">Good Morning Design 6</option>
+                <option value="goodmorning7.gif">Good Morning Design 7</option>
+                <option value="goodmorning8.gif">Good Morning Design 8</option>
+                <option value="goodmorning9.gif">Good Morning Design 9</option>
+                <option value="goodmorning10.gif">Good Morning Design 10</option>
+            </select>
+        </div>
+
+        <div id="mainContent" class="hidden">
+            <h1 id="greetingMessage"></h1>
+            <img id="greetingImage" src="" alt="Good Morning Animated GIF">
+            <div id="backButtonContainer"></div>
+            <div class="input-area">
+                <p><strong>Step 2: Enter your name to share:</strong></p>
+                <input type="text" id="nameInput" placeholder="Enter your full name here...">
+                <button class="whatsapp-button" onclick="generateAndShare()">
+                    <svg viewBox="0 0 24 24"><path d="M16.75,13.96C17.41,15.62 16.42,17.55 14.76,18.21C13.1,18.87 11.17,17.88 10.5,16.22L9.08,12.41L5.27,10.99C3.61,10.33 2.62,8.4 3.28,6.74C3.94,5.08 5.87,4.09 7.53,4.75L16.75,13.96M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22C16.23,22 19.84,19.03 21.25,15.19L19.86,14.7C18.65,17.95 15.54,20 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.33,4 12.66,4.03 12.97,4.08L14.03,2.54C13.38,2.19 12.7,2 12,2Z"></path></svg>
+                    <span>Share on WhatsApp</span>
+                </button>
+            </div>
+            <div id="generatedLinkArea"></div>
+        </div>
+        
+        <!-- === ADSTERRA AD CODE START === -->
+        <div id="ad-container">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5151d99dda1d9483bde7073716b4e6c7',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5151d99dda1d9483bde7073716b4e6c7/invoke.js"></script>
+        </div>
+        <!-- === ADSTERRA AD CODE END === -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.10.7/dist/fireworks.js"></script>
+    <script>
+        const selectionArea = document.getElementById('selectionArea');
+        const mainContent = document.getElementById('mainContent');
+        const greetingMessageElement = document.getElementById('greetingMessage');
+        const greetingImageElement = document.getElementById('greetingImage');
+        const gifSelector = document.getElementById('gifSelector');
+        const backButtonContainer = document.getElementById('backButtonContainer');
+        const fireworksContainer = document.getElementById('fireworks-container');
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const senderName = urlParams.get('name');
+            const gifName = urlParams.get('gif');
+
+            if (senderName && gifName) {
+                const fireworkOptions = {
+                    intensity: 30, particles: 80,
+                    delay: { min: 15, max: 25 }, traceSpeed: 2.5,
+                    explosion: 6, rocketsPoint: { min: 0, max: 100 }
+                };
+                const fireworks = new Fireworks.default(fireworksContainer, fireworkOptions);
+                fireworks.start();
+                greetingMessageElement.textContent = 'Good Morning from ' + decodeURIComponent(senderName) + '!';
+                greetingMessageElement.classList.add('glowing-text');
+                greetingImageElement.src = gifName;
+                selectionArea.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+            }
+        };
+
+        function showGreeting() {
+            const selectedGif = gifSelector.value;
+            if (selectedGif) {
+                greetingImageElement.src = selectedGif;
+                greetingMessageElement.textContent = 'Now, Make it Yours!';
+                backButtonContainer.innerHTML = '<button id="backButton" onclick="goBack()">&#x2190; Choose a different GIF</button>';
+                selectionArea.classList.add('hidden');
+                mainContent.classList.remove('hidden');
+            }
+        }
+        
+        function goBack() {
+            mainContent.classList.add('hidden');
+            selectionArea.classList.remove('hidden');
+            gifSelector.value = "";
+            document.getElementById('nameInput').value = "";
+            document.getElementById('generatedLinkArea').innerHTML = "";
+            backButtonContainer.innerHTML = "";
+        }
+
+        async function generateAndShare() {
+            const name = document.getElementById('nameInput').value.trim();
+            const currentGifSrc = greetingImageElement.src;
+            const currentGif = currentGifSrc.substring(currentGifSrc.lastIndexOf('/') + 1);
+
+            if (name === "") {
+                alert("Please enter your name first!");
+                return;
+            }
+
+            const baseUrl = window.location.origin + window.location.pathname;
+            const newUrl = `${baseUrl}?gif=${currentGif}&name=${encodeURIComponent(name)}`;
+            const shareData = {
+                title: 'A Special Good Morning Wish!',
+                text: `☀️ ${name} has sent you a beautiful greeting! Check it out:`,
+                url: newUrl
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    console.error('Share failed:', err.message);
+                }
+            } else {
+                const linkArea = document.getElementById('generatedLinkArea');
+                linkArea.innerHTML = `
+                    <p><strong>Auto-sharing not supported. Please copy this link:</strong></p>
+                    <input type="text" id="generatedLinkInput" value="${newUrl}" readonly onclick="this.select(); document.execCommand('copy'); alert('Link Copied!');">
+                `;
+                document.getElementById('generatedLinkInput').select();
+                alert("Link is ready! Click the box below to copy.");
+            }
+        }
+    </script>
+
+</body>
+</html>
