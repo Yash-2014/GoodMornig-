@@ -9,42 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            text-align: center;
-            padding: 20px;
-            overflow-y: auto;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            text-align: center; padding: 20px;
+            overflow-y: auto; overflow-x: hidden; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
         }
         .container {
-            position: relative;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            padding: 25px;
-            border-radius: 25px;
+            position: relative; z-index: 10;
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px);
+            padding: 25px; border-radius: 25px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            max-width: 420px;
-            width: 100%;
+            max-width: 420px; width: 100%;
             border-top: 1px solid rgba(255, 255, 255, 0.6);
             border-left: 1px solid rgba(255, 255, 255, 0.6);
             animation: popIn 0.7s ease-out forwards;
         }
         .hidden { display: none; }
         h1, h2 {
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease-out;
-            font-weight: 700;
+            margin-bottom: 20px; animation: fadeInDown 1s ease-out; font-weight: 700;
         }
         h1 { font-size: 2em; color: #d63031; }
         .glowing-text { animation: fadeInDown 1s ease-out, glow 2s ease-in-out infinite; }
@@ -88,13 +73,9 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1; pointer-events: none;
         }
-        /* Ad Container Style */
         #ad-container {
-            margin-top: 20px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-top: 20px; width: 100%;
+            display: flex; justify-content: center; align-items: center;
         }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-25px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
@@ -131,7 +112,7 @@
             <img id="greetingImage" src="" alt="Good Morning Animated GIF">
             <div id="backButtonContainer"></div>
             <div class="input-area">
-                <p><strong>Step 2: Enter your name to share:</strong></p>
+                <p><strong>Create your own wish! Enter your name:</strong></p>
                 <input type="text" id="nameInput" placeholder="Enter your full name here...">
                 <button class="whatsapp-button" onclick="generateAndShare()">
                     <svg viewBox="0 0 24 24"><path d="M16.75,13.96C17.41,15.62 16.42,17.55 14.76,18.21C13.1,18.87 11.17,17.88 10.5,16.22L9.08,12.41L5.27,10.99C3.61,10.33 2.62,8.4 3.28,6.74C3.94,5.08 5.87,4.09 7.53,4.75L16.75,13.96M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22C16.23,22 19.84,19.03 21.25,15.19L19.86,14.7C18.65,17.95 15.54,20 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.33,4 12.66,4.03 12.97,4.08L14.03,2.54C13.38,2.19 12.7,2 12,2Z"></path></svg>
@@ -141,7 +122,6 @@
             <div id="generatedLinkArea"></div>
         </div>
         
-        <!-- === ADSTERRA AD CODE START === -->
         <div id="ad-container">
             <script type="text/javascript">
                 atOptions = {
@@ -154,7 +134,6 @@
             </script>
             <script type="text/javascript" src="//www.highperformanceformat.com/5151d99dda1d9483bde7073716b4e6c7/invoke.js"></script>
         </div>
-        <!-- === ADSTERRA AD CODE END === -->
 
     </div>
 
@@ -221,9 +200,13 @@
 
             const baseUrl = window.location.origin + window.location.pathname;
             const newUrl = `${baseUrl}?gif=${currentGif}&name=${encodeURIComponent(name)}`;
+            
+            // **NEW: Attractive Share Content**
+            const shareText = `🎁✨ You've received a surprise Good Morning wish from ${name}!\n\nClick the link to see it! 🌅👇`;
+            
             const shareData = {
-                title: 'A Special Good Morning Wish!',
-                text: `☀️ ${name} has sent you a beautiful greeting! Check it out:`,
+                title: `A Special Wish from ${name}!`,
+                text: shareText,
                 url: newUrl
             };
 
